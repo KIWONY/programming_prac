@@ -34,6 +34,24 @@ class Artist():
     def get_price_culc(self):
         return f'After album price -> album : {self._album}, price : {self._detail.get("price") * Artist.price_per_raise}'
 
+    # 클래스 메소드
+    @classmethod
+    def raise_price(cls, per):
+        # cls = 클래스 그 자체
+        bool(cls.price_per_raise == Artist.price_per_raise)     # True
+        if per <=1:
+            print("Please enter 1 or more")
+
+            cls.price_per_raise = per
+            print("Succeed! price increased")
+
+    @staticmethod
+    def is_Wings(inst):
+        if inst._album == "Wings":
+            return f"album name is {inst._album}"
+        return "not Wings"
+
+
 artist1 = Artist('Wings', {"price": 20000})
 artist2 = Artist('Young Forever', {"price": 25000})
 
@@ -53,3 +71,28 @@ Artist.price_per_raise = 1.4    ###### -> 이런 식으로 클래스 변수를 �
 
 # 가격 정보 (인상 후)
 print(artist1.get_price_culc())
+
+# 가격 인상(클래스 메소드 사용)
+Artist.raise_price(2.3)
+print(artist1.get_price_culc())
+
+
+# static 메소드는 매우 유연하다
+# 인스턴스로 호출
+print(artist1.is_Wings(artist1))
+print(artist2.is_Wings(artist2))
+# 클래스로 호출
+print(Artist.is_Wings(artist1))
+print(Artist.is_Wings(artist2))
+
+
+
+
+
+
+
+
+
+
+
+
